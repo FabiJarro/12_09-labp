@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const botoes = document.querySelectorAll(".selector-personagem");
@@ -5,25 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     botoes.forEach(botao => {
         botao.addEventListener('click', () => {
-            const personagemid = botao.dataset.id;
+            const personagemId = botao.dataset.id;
 
             containerBiografia.innerHTML = `
         <h2>Carregando</h2>
         <p></p>
         `
 
-            fetch(`/biografia/${personagemid}`)
+            fetch(`/biografia/${personagemId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('A resposta da rede não foi bem sucedida');
                     }
                     return response.json();
 
-                    
+
                 })
                 .then(data => {
                     containerBiografia.innerHTML = `
-                        <h2>${data.home}</h2>
+                        <h2>${data.nome}</h2>
                         <p>${data.texto}</p>
                     `;
                 })
@@ -37,9 +38,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-
-
-
-
-
